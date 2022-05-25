@@ -1,18 +1,19 @@
-import { Outlet, useParams } from 'react-router-dom';
+// import { Outlet, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { GoBackButton } from '../../components/GoBackButton';
 import { Loader } from '../../components/Loader';
 import { MovieDetailsInfo } from '../../components/MovieDetailsInfo';
 import { useFetch } from '../../hooks';
 import { fetchMovieById } from '../../services/movieApi';
-import { checkPoster } from '../../utils';
-import { Link } from './MovieDetailsPage.styled';
+// import { checkPoster } from '../../utils';
+// import { Link } from './MovieDetailsPage.styled';
 
 export const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
   const [movie, loading, error] = useFetch(
     () => fetchMovieById(movieId),
-    [movieId],
+    [movieId]
   );
 
   // const getGenres = genres => genres.map(genre => genre.name).join(', ');

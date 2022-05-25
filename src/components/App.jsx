@@ -1,6 +1,6 @@
 import { Section } from './Section';
-import { Container } from './Container';
-import { Navigate, Route, Routes } from 'react-router-dom';
+// import { Container } from './Container';
+import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { HomePage } from '../views/HomePage';
 import { MoviesPage } from '../views/MoviesPage';

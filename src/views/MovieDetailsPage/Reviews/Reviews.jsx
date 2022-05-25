@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  fetchMovieReviews,
-  IMAGE_PATH_PROFILE,
-} from '../../../services/movieApi';
+import { fetchMovieReviews } from '../../../services/movieApi';
 import { checkAvatarPath } from '../../../utils';
 
 export const Reviews = () => {
@@ -48,7 +45,7 @@ export const Reviews = () => {
                 <p>{author}</p>
                 <p>{content}</p>
               </li>
-            ),
+            )
           )
         ) : (
           <h2>Nothing to show</h2>
