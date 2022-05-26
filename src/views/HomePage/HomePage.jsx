@@ -1,7 +1,7 @@
 import { useFetch } from '../../hooks';
 import { fetchTrendingMovies } from '../../services/movieApi';
 import { TrendingGallery } from '../../components/TrendingGallery';
-import { Loader } from '../../components/Loader/';
+import { Loader } from '../../components/ui/Loader';
 import { Title } from './HomePage.styled';
 
 export const HomePage = () => {
@@ -9,7 +9,7 @@ export const HomePage = () => {
 
   if (error) return <h1>{error}</h1>;
   if (loading) return <Loader />;
-  console.log(movies, 'movies');
+
   return (
     <>
       <Title>Trending Movie</Title>

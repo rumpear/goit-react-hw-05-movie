@@ -1,10 +1,8 @@
-// import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Loader } from '../../../components/Loader';
 import { useFetch } from '../../../hooks';
+import { CastList } from '../../../components/CastList/';
+import { Loader } from '../../../components/ui/Loader';
 import { fetchCast } from '../../../services/movieApi';
-import { checkProfilePhoto } from '../../../utils';
-import { Image, List, Item } from './Cast.styled';
 
 export const Cast = () => {
   const { movieId } = useParams();
@@ -12,49 +10,6 @@ export const Cast = () => {
 
   if (loading) return <Loader />;
   if (error) return <h1>{error}</h1>;
-  // if (!data) return;
-  console.log(data, 'Cast');
 
-  return (
-    <>
-      <List>
-        {data && data.cast.length ? (
-          data.cast.map(({ id, name, character, profile_path }) => {
-            return (
-              <Item key={id}>
-                <Image src={checkProfilePhoto(profile_path)} alt={name} />
-                <p>{name}</p>
-                <p>{character}</p>
-              </Item>
-            );
-          })
-        ) : (
-          <h2>Nothing to show</h2>
-        )}
-      </List>
-      {/* {data && <Gallery cast={data.cast}></Gallery>} */}
-    </>
-  );
+  return <>{data && <CastList cast={data.cast}></CastList>}</>;
 };
-
-// const Gallery = ({ cast }) => {
-//   console.log(cast, 'hee');
-//   return (
-//     // <h1>{'hee'}</h1>
-//     <List>
-//       {cast ? (
-//         cast.map(({ id, name, character, profile_path }) => {
-//           return (
-//             <Item key={id}>
-//               <Image src={checkProfilePhoto(profile_path)} alt={name} />
-//               <p>{name}</p>
-//               <p>{character}</p>
-//             </Item>
-//           );
-//         })
-//       ) : (
-//         <h2>Nothing to show</h2>
-//       )}
-//     </List>
-//   );
-// };

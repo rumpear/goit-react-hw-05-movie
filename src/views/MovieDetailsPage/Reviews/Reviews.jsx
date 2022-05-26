@@ -1,56 +1,18 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useFetch } from '../../../hooks';
 import { fetchMovieReviews } from '../../../services/movieApi';
-import { checkAvatarPath } from '../../../utils';
+import { ReviewsList } from '../../../components/ReviewsList';
+import { Loader } from '../../../components/ui/Loader';
 
 export const Reviews = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    const getReviews = async movieId => {
-      const { results } = await fetchMovieReviews(movieId);
-      console.log(results);
-      setReviews(results);
-    };
-    getReviews(movieId);
-  }, [movieId]);
-
-  // if (!reviews.length) return;
-
-  return (
-    <>
-      <ul>
-        {/* {reviews.map(
-          ({ author, author_details, content, created_at, id, url }) => (
-            <li key={id}>
-              <img
-                src={checkAvatarPath(author_details.avatar_path)}
-                alt={author_details.username}
-              />
-              <p>{author}</p>
-              <p>{content}</p>
-            </li>
-          ),
-        )} */}
-
-        {reviews.length ? (
-          reviews.map(
-            ({ author, author_details, content, created_at, id, url }) => (
-              <li key={id}>
-                <img
-                  src={checkAvatarPath(author_details.avatar_path)}
-                  alt={author_details.username}
-                />
-                <p>{author}</p>
-                <p>{content}</p>
-              </li>
-            )
-          )
-        ) : (
-          <h2>Nothing to show</h2>
-        )}
-      </ul>
-    </>
+  const [data, loading, error] = useFetch(
+    () => fetchMovieReviews(movieId),
+    [movieId]
   );
+
+  if (loading) return <Loader />;
+  if (error) return <h1>{error}</h1>;
+
+  return <>{data && <ReviewsList reviews={data.results} />}</>;
 };

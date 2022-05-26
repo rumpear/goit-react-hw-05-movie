@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { GoBackButton } from '../../components/GoBackButton';
+import { GoBackButton } from '../../components/ui/GoBackButton';
 
 export const NotFoundPage = () => {
   return (
