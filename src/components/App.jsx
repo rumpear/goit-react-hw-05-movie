@@ -1,7 +1,6 @@
-import { Section } from './Section';
-// import { Container } from './Container';
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from './Layout/Layout';
+import { Layout } from './Layout/';
+import { Section } from './ui/Section';
 import { HomePage } from '../views/HomePage';
 import { MoviesPage } from '../views/MoviesPage';
 import { MovieDetailsPage } from '../views/MovieDetailsPage';

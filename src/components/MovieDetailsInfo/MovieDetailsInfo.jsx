@@ -1,23 +1,71 @@
 import { Outlet } from 'react-router-dom';
-import { checkPoster } from '../../utils';
-import { Link } from './MovieDetailsInfo.styled';
+import { checkPoster, getGenres } from '../../utils';
+import {
+  Wrapper,
+  Link,
+  Poster,
+  PosterThumb,
+  Details,
+  Title,
+  Table,
+  Head,
+  Data,
+  Rating,
+  RatingAccent,
+  AboutSubtitle,
+  AdditionalSubtitle,
+  Overview,
+} from './MovieDetailsInfo.styled';
 
 export const MovieDetailsInfo = ({ movie }) => {
-  const getGenres = genres => genres.map(genre => genre.name).join(', ');
-
+  console.log(movie);
   return (
-    <div>
-      <img src={checkPoster(movie.poster_path)} alt={movie.title}></img>
-      <p>{movie.title}</p>
-      {movie.genres && <p>Genre: {getGenres(movie.genres)}</p>}
-      <p>Vote / Votes: {movie.vote_average}</p>
-      <p>Popularity: {movie.popularity}</p>
-      <p>About: {movie.overview}</p>
+    <>
+      <Wrapper>
+        <PosterThumb>
+          <Poster src={checkPoster(movie.poster_path)} alt={movie.title} />
+        </PosterThumb>
 
-      <p>Additional information</p>
+        <Details>
+          <Title>{movie.title}</Title>
+
+          <Table>
+            <tr>
+              <Head>Vote / Votes:</Head>
+              <Data>
+                <Rating>{movie.vote_average}</Rating> /{' '}
+                <RatingAccent>{movie.vote_count}</RatingAccent>
+              </Data>
+            </tr>
+            <tr>
+              <Head>Popularity:</Head>
+              <Data>{movie.popularity}</Data>
+            </tr>
+            <tr>
+              <Head>Original title</Head>
+              <Data>{movie.original_title}</Data>
+            </tr>
+            <tr>
+              <Head>Release:</Head>
+              <Data>{movie.release_date}</Data>
+            </tr>
+            <tr>
+              <Head>Genre:</Head>
+              <Data>
+                {movie.genres ? getGenres(movie.genres) : 'No genres'}
+              </Data>
+            </tr>
+          </Table>
+
+          <AboutSubtitle>About</AboutSubtitle>
+          <Overview>{movie.overview}</Overview>
+        </Details>
+      </Wrapper>
+
+      <AdditionalSubtitle>Additional information</AdditionalSubtitle>
       <Link to={`cast`}>Cast</Link>
       <Link to={`reviews`}>Review</Link>
       <Outlet />
-    </div>
+    </>
   );
 };
