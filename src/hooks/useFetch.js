@@ -10,7 +10,7 @@ export const useFetch = (requestFn, deps) => {
       setLoading(true);
       try {
         const data = await requestFn();
-        console.log('useEffect', data);
+        // console.log('useEffect', data);
         setState(data);
       } catch (error) {
         setError(error.message);
@@ -21,6 +21,6 @@ export const useFetch = (requestFn, deps) => {
     asyncRequest();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
-  console.log(state, 'after useEffect');
+  // console.log(state, 'after useEffect');
   return [state, loading, error];
 };

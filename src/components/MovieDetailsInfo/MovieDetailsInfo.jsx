@@ -18,7 +18,6 @@ import {
 } from './MovieDetailsInfo.styled';
 
 export const MovieDetailsInfo = ({ movie }) => {
-  console.log(movie);
   return (
     <>
       <Wrapper>
@@ -30,31 +29,33 @@ export const MovieDetailsInfo = ({ movie }) => {
           <Title>{movie.title}</Title>
 
           <Table>
-            <tr>
-              <Head>Vote / Votes:</Head>
-              <Data>
-                <Rating>{movie.vote_average}</Rating> /{' '}
-                <RatingAccent>{movie.vote_count}</RatingAccent>
-              </Data>
-            </tr>
-            <tr>
-              <Head>Popularity:</Head>
-              <Data>{movie.popularity}</Data>
-            </tr>
-            <tr>
-              <Head>Original title</Head>
-              <Data>{movie.original_title}</Data>
-            </tr>
-            <tr>
-              <Head>Release:</Head>
-              <Data>{movie.release_date}</Data>
-            </tr>
-            <tr>
-              <Head>Genre:</Head>
-              <Data>
-                {movie.genres ? getGenres(movie.genres) : 'No genres'}
-              </Data>
-            </tr>
+            <tbody>
+              <tr>
+                <Head>Vote / Votes:</Head>
+                <Data>
+                  <Rating>{movie.vote_average}</Rating> /{' '}
+                  <RatingAccent>{movie.vote_count}</RatingAccent>
+                </Data>
+              </tr>
+              <tr>
+                <Head>Popularity:</Head>
+                <Data>{movie.popularity}</Data>
+              </tr>
+              <tr>
+                <Head>Original title</Head>
+                <Data>{movie.original_title}</Data>
+              </tr>
+              <tr>
+                <Head>Release:</Head>
+                <Data>{movie.release_date}</Data>
+              </tr>
+              <tr>
+                <Head>Genre:</Head>
+                <Data>
+                  {movie.genres ? getGenres(movie.genres) : 'No genres'}
+                </Data>
+              </tr>
+            </tbody>
           </Table>
 
           <AboutSubtitle>About</AboutSubtitle>

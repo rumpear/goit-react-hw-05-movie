@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-export const Button = styled.button`
+export const Button = styled(Link)`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +22,8 @@ export const Button = styled.button`
   line-height: 1.87;
   letter-spacing: 0.06em;
   color: black;
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
   margin-bottom: 10px;
 
@@ -29,6 +31,7 @@ export const Button = styled.button`
 
   :hover {
     background-color: rgba(77, 77, 77, 0.1);
+    color: red;
   }
 
   :last-child {
