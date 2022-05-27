@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Button } from './GoBackButton.styled';
 import { IoReturnDownBack } from 'react-icons/io5';
 import { useEffect, useState } from 'react';
