@@ -19,7 +19,6 @@ export const useFetch = (requestFn, deps) => {
       }
     };
     asyncRequest();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
   // console.log(state, 'after useEffect');
   return [state, loading, error];
