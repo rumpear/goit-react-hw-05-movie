@@ -1,1 +1,0 @@
-export { SearchGallery } from './SearchGallery';
