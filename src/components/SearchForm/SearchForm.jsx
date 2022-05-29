@@ -1,13 +1,19 @@
-import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 
-export const SearchForm = ({ onQuery, onSearch }) => {
+export const SearchForm = ({ onSearch, query }) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    onQuery(input);
     onSearch({ query: input });
   };
+
+  useEffect(() => {
+    if (query) {
+      setInput(query);
+    }
+  }, [query]);
 
   return (
     <>
@@ -24,4 +30,9 @@ export const SearchForm = ({ onQuery, onSearch }) => {
       </form>
     </>
   );
+};
+
+SearchForm.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  query: PropTypes.string,
 };

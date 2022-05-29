@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Outlet } from 'react-router-dom';
 import { checkPoster, getGenres } from '../../utils';
 import {
@@ -69,4 +70,12 @@ export const MovieDetailsInfo = ({ movie }) => {
       <Outlet />
     </>
   );
+};
+
+MovieDetailsInfo.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
+  }),
 };
