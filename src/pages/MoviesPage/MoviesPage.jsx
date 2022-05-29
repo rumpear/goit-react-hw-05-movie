@@ -3,15 +3,16 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchSearchMovie } from '../../services/movieApi';
 import { Loader } from '../../components/ui/Loader';
 import { SearchForm } from '../../components/SearchForm';
-import { SearchGallery } from '../../components/SearchGallery';
+import { Gallery } from '../../components/Gallery/';
 
 export const MoviesPage = () => {
-  const [query, setQuery] = useState('');
   const [search, setSearch] = useSearchParams();
 
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const query = search.get('query');
 
   useEffect(() => {
     if (!query) return;
@@ -27,35 +28,18 @@ export const MoviesPage = () => {
         setLoading(false);
       }
     };
-    getData();
-  }, [query]);
-
-  useEffect(() => {
-    if (!search.get('query')) return;
-
-    const getData = async () => {
-      setLoading(true);
-      try {
-        const { results } = await fetchSearchMovie(search.get('query'));
-        setMovies(results);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
 
     getData();
-  }, [search]);
+  }, [query, search]);
 
   if (error) {
-    return <h1>{error}</h1>;
+    return <h2>{error}</h2>;
   }
 
   return (
     <>
-      <SearchForm onQuery={setQuery} onSearch={setSearch} />
-      {loading ? <Loader /> : movies && <SearchGallery movies={movies} />}
+      <SearchForm onSearch={setSearch} query={query} />
+      {loading ? <Loader /> : movies && <Gallery movies={movies} />}
     </>
   );
 };

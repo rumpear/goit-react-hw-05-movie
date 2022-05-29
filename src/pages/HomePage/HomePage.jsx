@@ -1,6 +1,6 @@
 import { useFetch } from '../../hooks';
 import { fetchTrendingMovies } from '../../services/movieApi';
-import { TrendingGallery } from '../../components/TrendingGallery';
+import { Gallery } from '../../components/Gallery';
 import { Loader } from '../../components/ui/Loader';
 import { Title } from './HomePage.styled';
 
@@ -13,7 +13,7 @@ export const HomePage = () => {
   return (
     <>
       <Title>Trending Movie</Title>
-      {movies && <TrendingGallery movies={movies} />}
+      {movies && <Gallery movies={movies.results} />}
     </>
   );
 };
