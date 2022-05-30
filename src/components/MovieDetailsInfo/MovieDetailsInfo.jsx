@@ -19,6 +19,7 @@ import {
 } from './MovieDetailsInfo.styled';
 
 export const MovieDetailsInfo = ({ movie }) => {
+  console.log(movie);
   return (
     <>
       <Wrapper>
@@ -77,5 +78,12 @@ MovieDetailsInfo.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     poster_path: PropTypes.string,
+    vote_average: PropTypes.number,
+    vote_count: PropTypes.number,
+    popularity: PropTypes.number,
+    original_title: PropTypes.string,
+    release_date: PropTypes.string,
+    genres: PropTypes.array,
+    overview: PropTypes.string,
   }),
 };
